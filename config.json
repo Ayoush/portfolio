@@ -2,5 +2,5 @@
     "name": "Ayoush Chourasia",
     "tabs": ["home", "github", "blogs", "contact", "profile"],
     "logo": "src/assets/images/logo.svg",
-    "profile": "src/assets/images/profile.svg"
+    "avatar": "src/assets/images/avatar.JPEG"
 }
