@@ -4,7 +4,7 @@ import NavContent from './NavContent/navcontent';
 
 export default function NavBar() {
   return (
-    <div className=" bg-white flex items-center p-4 justify-between border-l sticky top-0 border border-black">
+    <div className="bg-white flex items-center p-4 justify-between border-l sticky top-0">
         <NavContent/>
         <div className='flex items-center justify-between'>
           <div className="font-inter font-medium mr-4">
