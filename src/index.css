@@ -11,6 +11,12 @@
     "slnt" 0;
 }
 
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 .gradient-border {
   background: linear-gradient(
@@ -33,4 +39,25 @@
   50% {
     background-position: 100% 50%;
   }
+}
+
+
+.text-stroke-black {
+  -webkit-text-stroke: 2px theme("colors.black.DEFAULT");
+}
+
+.text-stroke-blue {
+  -webkit-text-stroke: 2px theme("colors.blue.DEFAULT");
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 1px theme("colors.white.DEFAULT");
+}
+
+.text-stroke-dark-gray {
+  -webkit-text-stroke: 1px theme("colors.gray.dark");
+}
+
+.text-stroke-none {
+  -webkit-text-stroke: 0;
 }

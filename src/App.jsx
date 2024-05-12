@@ -1,7 +1,7 @@
 import NavBar from "./components/Navbar/navbar"
 import SideBar from "./components/Sidebar/sidebar"
-import Content from "./components/Tabs/content"
 import { RecoilRoot } from "recoil";
+import config from "../config";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -13,10 +13,13 @@ function App() {
           <div className="flex flex-col w-full p-0 h-screen">
             <NavBar></NavBar>
             <Routes>
-              <Route exact path="/" element={<Content />} />
-              <Route path="/about" element={<Content />} />
-              <Route path="/contact" element={<Content />} />
-              {/* Add more routes as needed */}
+            {config.navLinks.map((link, index) => (
+                <Route
+                  key={index}
+                  path={link.href}
+                  element={<link.component />}
+                />
+              ))}
             </Routes>
           </div>
       </div>
