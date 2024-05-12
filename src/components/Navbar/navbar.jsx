@@ -1,4 +1,4 @@
-import config from '../../../config.json';
+import config from '../../../config';
 import NavContent from './NavContent/navcontent';
 
 
@@ -6,7 +6,7 @@ import NavContent from './NavContent/navcontent';
 export default function NavBar() {
   
   return (
-    <div className="bg-white flex items-center p-4 justify-between border-l sticky top-0">
+    <div className="bg-white flex items-center p-4 justify-between sticky top-0">
         <NavContent/>
         <div className='flex items-center justify-between'>
           <div className="font-inter font-medium mr-4">

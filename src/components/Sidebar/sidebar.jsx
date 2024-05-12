@@ -1,17 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import { Link, useLocation } from "react-router-dom";
-import config from "../../../config.json";
+import config from "../../../config";
 import { tabName } from "../../atoms/navbar";
-import { AiOutlineHome, AiFillHome } from "react-icons/ai";
-import { VscGithub, VscGithubInverted } from "react-icons/vsc";
-import {
-  MdOutlineArticle,
-  MdArticle,
-  MdOutlineContactPage,
-  MdContactPage,
-  MdAccountCircle,
-  MdOutlineAccountCircle,
-} from "react-icons/md";
 
 export default function SideBar() {
   const setTabName = useSetRecoilState(tabName);
@@ -31,7 +21,7 @@ export default function SideBar() {
       </div>
         <div className="flex flex-col justify-center  h-[89%]  text-lg">
           <ul>
-            {navLinks.map((link, index) => (
+            {config.navLinks.map((link, index) => (
               <li key={index}>
                 <Link
                 onClick={() => handleClick(link.name)}
@@ -55,36 +45,3 @@ export default function SideBar() {
     </div>
   );
 }
-
-const navLinks = [
-  {
-    name: "Home",
-    icon: AiOutlineHome,
-    activeIcon: AiFillHome,
-    href: "/",
-  },
-  {
-    name: "Github",
-    icon: VscGithub,
-    activeIcon: VscGithubInverted,
-    href: "/github",
-  },
-  {
-    name: "Blogs",
-    icon: MdOutlineArticle,
-    activeIcon: MdArticle,
-    href: "/blogs",
-  },
-  {
-    name: "Contact",
-    icon: MdOutlineContactPage,
-    activeIcon: MdContactPage,
-    href: "/contact",
-  },
-  {
-    name: "Profile",
-    icon: MdOutlineAccountCircle,
-    activeIcon: MdAccountCircle,
-    href: "/profile",
-  },
-];
