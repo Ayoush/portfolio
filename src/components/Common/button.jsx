@@ -26,7 +26,7 @@ const BorderGlowButton = ({displayText}) => {
       ref={ref}
     >
       <span
-        className={`absolute z-0 h-20 w-20 -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(#fb3b53_0%,transparent_70%)]`}
+        className={`absolute z-0 h-20 w-20 -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(#fb3b53cc_70%,transparent_90%)]`}
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
