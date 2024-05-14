@@ -20,26 +20,24 @@ export default function SideBar() {
         <img src={config.logo} alt="thinkersClub" className="w-14 h-14 rounded-full" />
       </div>
         <div className="flex flex-col justify-center  h-[89%]  text-lg">
-          <ul>
-            {config.navLinks.map((link, index) => (
-              <li key={index}>
-                <Link
-                onClick={() => handleClick(link.name)}
-                className="block text-gray-600 hover:text-gray-800 px-4 py-2"
-                to={link.href}
-              >
-                <div className="flex items-center">
-                  {isActive(link.href) ? (
-                    <link.activeIcon size={24} />
-                  ) : (
-                    <link.icon size={24} />
-                  )}
-                  <span className="ml-2">{link.name}</span>
-                </div>
-              </Link>
-              </li>
-            ))}
-          </ul>
+        <ul>
+  {config.navLinks.map((link, index) => (
+    <li key={index} className="mb-4">
+      <Link
+        onClick={() => handleClick(link.name)}
+        className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-800 rounded-md"
+        to={link.href}
+      >
+        {isActive(link.href) ? (
+          <link.activeIcon className="w-6 h-6 mr-2" /> // Adjust the icon size and margin
+        ) : (
+          <link.icon className="w-6 h-6 mr-2" /> // Adjust the icon size and margin
+        )}
+        <span className="text-lg">{link.name}</span> 
+      </Link>
+    </li>
+  ))}
+</ul>
         </div>
       
     </div>

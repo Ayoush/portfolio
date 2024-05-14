@@ -17,6 +17,12 @@ const config = {
     name: "Ayoush Chourasia",
     logo: "src/assets/images/logo.png",
     avatar: "src/assets/images/avatar.JPEG",
+    github: "https://api.github.com/users/Ayoush",
+    company: "Veltris",
+    hometown: "Indore",
+    instagram: "ayoushchourasia",
+    github_icon: "src/assets/images/github.png",
+    github_token: "",
     navLinks: [
       {
         name: "Home",

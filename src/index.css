@@ -61,3 +61,20 @@
 .text-stroke-none {
   -webkit-text-stroke: 0;
 }
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+div {
+  scrollbar-width: none;
+}
