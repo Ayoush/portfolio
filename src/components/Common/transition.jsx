@@ -1,10 +1,21 @@
 import { Transition, TransitionChild } from "@headlessui/react";
-import { forwardRef } from "react";
+import { forwardRef, Fragment, useEffect, useState } from "react";
 
 // RootTransition component
 export const RootTransition = forwardRef(({ children, ...props }, ref) => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShow(true);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
   return (
-    <Transition ref={ref} {...props}>
+    <Transition ref={ref} show={show} {...props}>
       {children}
     </Transition>
   );
@@ -20,26 +31,25 @@ export const ChildTransition = forwardRef(
       direction === "up"
         ? "translate-y-6"
         : direction === "down"
-        ? "-translate-y-6"
-        : direction === "left"
-        ? "translate-x-6"
-        : "-translate-x-6";
+          ? "-translate-y-6"
+          : direction === "left"
+            ? "translate-x-6"
+            : "-translate-x-6";
 
     const enterToDirection =
       direction === "up"
         ? "translate-y-0"
         : direction === "down"
-        ? "translate-y-0"
-        : direction === "left"
-        ? "translate-x-0"
-        : "translate-x-0";
+          ? "translate-y-0"
+          : direction === "left"
+            ? "translate-x-0"
+            : "translate-x-0";
 
     return (
       <TransitionChild
         ref={ref}
-        className={className}
+        className={`${className} delay-${delay}`} // Apply delay using a CSS class
         suppressHydrationWarning
-        style={{ transitionDelay: `${delay}ms` }}
         enter={`transition-all ease-in-out duration-${speed}`}
         enterFrom={`opacity-0 ${enterFromDirection}`}
         enterTo={`opacity-100 ${enterToDirection}`}
@@ -48,7 +58,7 @@ export const ChildTransition = forwardRef(
         leaveTo="opacity-0"
         {...props}
       >
-        {children}
+        <div>{children}</div>
       </TransitionChild>
     );
   }
