@@ -7,7 +7,8 @@ import { ChildTransition } from "./transition";
 const RepoCard = ({
   index,
   repodetails,
-  BottomIcons
+  BottomIcons,
+  InfoIcon
 }) => {
   return (
     <ChildTransition delay={index * 100}>
@@ -43,7 +44,10 @@ const RepoCard = ({
               </a>
               {/* <BsDot className="-mx-1 text-gray-dark" /> */}
               {/* <div className="text-gray-dark">{repodetails.description}</div> */}
-              
+            </div>
+            <div className="flex items-center gap-1">
+                <div className="text-gray-dark">{InfoIcon}</div>
+                <div className="text-gray-dark">{repodetails.language}</div>
             </div>
           </div>
 
