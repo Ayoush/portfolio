@@ -42,7 +42,7 @@ export const repoDetails = selector({
   get: async ({ get }) => {
     try {
       const userData = get(githubData);
-      const response = await axios.get(`${userData.repos_url}?per_page=200`, {
+      const response = await axios.get(`${userData.repos_url}?sort=updated&direction=desc&per_page=50`, {
         headers: {
           Authorization: `Bearer ${config.github_token}`,
         },
@@ -63,50 +63,6 @@ export const repoDetails = selector({
           languages: repo.languages_url
         }));
       return repoData;
-    } catch (error) {
-      throw error;
-    }
-  },
-});
-
-
-
-export const repoLanguages = selector({
-  key: "repoLanguages",
-  get: async ({ get }) => {
-    try {
-      const repos = get(repoDetails);
-      const languagesData = await Promise.all(
-        repos.map(async (repo) => {
-          const response = await axios.get(repo.languages, {
-            headers: {
-              Authorization: `Bearer ${config.github_token}`,
-            },
-          });
-          return {
-            repoName: repo.name,
-            languages: response.data,
-          };
-        })
-      );
-      return languagesData;
-    } catch (error) {
-      throw error;
-    }
-  },
-});
-
-
-export const repoDetailsSelector = selectorFamily({
-  key: "repoDetailsSelector",
-  get: (repoUrl) => async () => {
-    try {
-      const response = await axios.get(repoUrl, {
-        headers: {
-          Authorization: `Bearer ${config.github_token}`,
-        },
-      });
-      return response.data;
     } catch (error) {
       throw error;
     }

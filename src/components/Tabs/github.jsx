@@ -1,22 +1,54 @@
 import Container from "../Common/container";
 import config from "../../../config";
-import { MdLanguage, MdRemoveRedEye, MdStar, MdLocationOn } from "react-icons/md";
+import {
+  MdLanguage,
+  MdRemoveRedEye,
+  MdStar,
+  MdLocationOn,
+} from "react-icons/md";
 import { VscRepoForked } from "react-icons/vsc";
 import { GrOrganization } from "react-icons/gr";
-import {useRecoilValueLoadable } from "recoil";
+import { useRecoilValueLoadable } from "recoil";
 import { githubData, followersData, repoDetails } from "../../atoms/github";
 import { Audio } from "react-loader-spinner";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { RootTransition, ChildTransition } from "../Common/transition";
 import TabsContainer from "../Common/tabcontainer";
 import RepoCard from "../Common/repocard";
+import Button from "../Common/normal_button";
 
 export default function Github() {
   const githubProfile = useRecoilValueLoadable(githubData);
   const followers = useRecoilValueLoadable(followersData);
   const repos = useRecoilValueLoadable(repoDetails);
   const githubRef = useRef(null);
-  if (githubProfile.state === "loading" || followers.state === "loading" || repos.state === "loading") {
+  const githubStats = useMemo(() => {
+    return [
+      {
+        name: "repos",
+        value: repos.state === "hasValue" ? repos.contents.length : 0,
+      },
+      {
+        name: "gists",
+        value:
+          githubProfile.state === "hasValue"
+            ? githubProfile.contents.public_gists
+            : 0,
+      },
+      {
+        name: "collaborators",
+        value:
+          githubProfile.state === "hasValue"
+            ? githubProfile.contents.collaborators
+            : 0,
+      },
+    ];
+  }, [repos.state, repos.contents, githubProfile.state, githubProfile.contents]);
+  if (
+    githubProfile.state === "loading" ||
+    followers.state === "loading" ||
+    repos.state === "loading"
+  ) {
     return (
       <>
         <Audio
@@ -34,7 +66,7 @@ export default function Github() {
     return (
       <div className="flex gap-4 p-4 h-screen bg-gray-100 overflow-hidden">
         <div className="w-[30%] text-sm flex flex-col gap-4 max-h-screen sticky overflow-y-auto">
-          <Container >
+          <Container>
             <div className="flex flex-col items-center gap-4">
               <img
                 src={config.avatar}
@@ -55,7 +87,9 @@ export default function Github() {
                   <div>{config.company}</div>
                 </div>
               </div>
-              <div className="text-center whitespace-pre-line">{githubProfile.contents.bio}</div>
+              <div className="text-center whitespace-pre-line">
+                {githubProfile.contents.bio}
+              </div>
               <div className="text-center whitespace-pre-line">{}</div>
               <div>
                 <div className="flex space-x-4 divide-x divide-gray-light">
@@ -75,7 +109,7 @@ export default function Github() {
               </div>
             </div>
           </Container>
-          <Container title="Followers" >
+          <Container title="Followers">
             <RootTransition show={true} ref={githubRef}>
               <div className="flex flex-wrap gap-1">
                 {/* Render each follower using ChildTransition */}
@@ -106,25 +140,93 @@ export default function Github() {
         </div>
 
         <div className="w-[45%] overflow-y-auto bg-white ">
-          <TabsContainer reference={githubRef} tabNames={["Top Repositories"]} 
-          repodetails={[repos.contents.map((repo, index) => (
-            <RepoCard key={index} repodetails={repo} cardindex={index} BottomIcons={[
-              {
-                Icon: <MdRemoveRedEye size={16} />,
-              },
-              {
-                Icon: <VscRepoForked size={16} />,
-              },
-              {
-                Icon: <MdStar size={16} />,
-              },
-            ]} />
-          ))]}
+          <TabsContainer
+            reference={githubRef}
+            tabNames={["Top Repositories"]}
+            repodetails={[
+              repos.contents.map((repo, index) => (
+                <RepoCard
+                  key={index}
+                  repodetails={repo}
+                  cardindex={index}
+                  BottomIcons={[
+                    {
+                      Icon: <MdRemoveRedEye size={16} />,
+                    },
+                    {
+                      Icon: <VscRepoForked size={16} />,
+                    },
+                    {
+                      Icon: <MdStar size={16} />,
+                    },
+                  ]}
+                  InfoIcon={<MdLanguage size={16} />}
+                />
+              )),
+            ]}
           />
-            
-          
         </div>
-        <div className="w-[25%] flex flex-col gap-4 h-fit sticky border border-black"></div>
+        <div className="w-[25%] flex flex-col gap-4 h-fit sticky ">
+          <Container title="GitHub Stats">
+            <div className="flex flex-col gap-4 text-sm">
+              {githubStats.map((item) => (
+                <div key={item.name}>
+                  <div className="lowercase">#{item.name}</div>
+                  <div className="font-light">{item.value}</div>
+                </div>
+              ))}
+            </div>
+          </Container>
+          <Container title="Languages">
+            <div className="flex flex-col gap-4 text-sm">
+              <div className="flex gap-2 flex-wrap">
+              {repos.contents
+        .filter((repo) => repo.language !== null)
+        .reduce((uniqueLanguages, repo) => {
+          if (!uniqueLanguages.includes(repo.language)) {
+            uniqueLanguages.push(repo.language);
+          }
+          return uniqueLanguages;
+        }, [])
+        .map((language) => (
+          <div key={language} className="lowercase">
+            #{language}
+          </div>
+        ))}
+              </div>
+            </div>
+          </Container>
+          <Container title="You may checkout">
+            <div className="flex justify-between">
+              <div className="flex flex-col gap-4 text-sm">
+                <div className="flex items-center gap-1">
+                  <img
+                    alt="github logo"
+                    src={config.github_icon}
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                  <div className="font-medium">Github</div>
+                  <img
+                    alt="verified bage"
+                    src={config.verified_icon}
+                    width={12}
+                    height={12}
+                    className="rounded-full"
+                  />
+                </div>
+              </div>
+              <Button
+                referrerPolicy="no-referrer"
+                target="_blank"
+                href={config.github_url}
+              >
+                Check now
+              </Button>
+            </div>
+          </Container>
+        </div>
       </div>
     );
   }

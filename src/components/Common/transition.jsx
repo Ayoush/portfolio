@@ -1,5 +1,5 @@
 import { Transition, TransitionChild } from "@headlessui/react";
-import { forwardRef, Fragment, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 // RootTransition component
 export const RootTransition = forwardRef(({ children, ...props }, ref) => {

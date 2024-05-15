@@ -23,6 +23,8 @@ const config = {
     instagram: "ayoushchourasia",
     github_icon: "src/assets/images/github.png",
     github_token: "",
+    github_url: "https://github.com/Ayoush",
+    verified_icon: "src/assets/images/verify.png",
     navLinks: [
       {
         name: "Home",
