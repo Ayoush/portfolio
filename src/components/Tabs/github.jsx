@@ -65,7 +65,7 @@ export default function Github() {
   } else {
     return (
       <div className="flex gap-4 p-4 h-screen bg-gray-100 overflow-hidden">
-        <div className="w-[30%] text-sm flex flex-col gap-4 max-h-screen sticky overflow-y-auto">
+        <div className="w-[30%] text-sm flex flex-col gap-4 max-h-screen ">
           <Container>
             <div className="flex flex-col items-center gap-4">
               <img
@@ -143,7 +143,7 @@ export default function Github() {
           <TabsContainer
             reference={githubRef}
             tabNames={["Top Repositories"]}
-            repodetails={[
+            childdetails={[
               repos.contents.map((repo, index) => (
                 <RepoCard
                   key={index}
