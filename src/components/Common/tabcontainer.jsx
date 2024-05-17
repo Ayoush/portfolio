@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { RootTransition } from "./transition";
 import { classNames } from "./common";
 
-const TabsContainer = ({ tabNames, repodetails, reference }) => {
+const TabsContainer = ({ tabNames, childdetails, reference }) => {
   const underlineRef = useRef(null);
   const [underlineWidth, setUnderlineWidth] = useState(0);
   const [underlineOffsetWidth, setUnderlineOffsetWidth] = useState(0);
@@ -49,7 +49,7 @@ const TabsContainer = ({ tabNames, repodetails, reference }) => {
           <div>
             <RootTransition>
               <div>
-              {repodetails.map((repo, index) => (
+              {childdetails.map((repo, index) => (
                 <TabPanel key={index}>{repo}</TabPanel>
               ))}
               </div>
