@@ -15,7 +15,7 @@ const TabsContainer = ({ tabNames, childdetails, reference }) => {
   }, []);
 
   return (
-    <div className="px-6 py-4 bg-white rounded h-full w-full">
+    <div className="px-6 py-4 bg-white rounded h-fit w-full">
       <TabGroup>
         <TabList className={"flex gap-3 relative text-sm font-medium"}>
           <div className="h-[1px] bg-gray-light absolute -inset-x-6 bottom-0"></div>

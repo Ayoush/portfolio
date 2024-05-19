@@ -284,7 +284,7 @@ export default function Blog() {
                   }
                 ]
               }}
-              cardindex={0}
+              cardindex={1}
               InfoIcon={<MdAccessTime size={16} />}
               BottomIcons={[
                 {
@@ -362,7 +362,7 @@ export default function Blog() {
               <Button
                 referrerPolicy="no-referrer"
                 target="_blank"
-                href={config.profile_url}
+                href={config.blog_url}
               >
                 Check now
               </Button>
