@@ -4,9 +4,9 @@ import { classNames } from "./common";
 
 
 
-const BlogCard = ({
+const ContactCard = ({
   cardindex,
-  blogdetails,
+  contactdetails,
   InfoIcon,
   BottomIcons
 }) => {
@@ -16,7 +16,7 @@ const BlogCard = ({
         <div className="shrink-0">
           <img
             alt="profile picture"
-            src={blogdetails.icon}
+            src={contactdetails.icon}
             width={32}
             height={32}
             className="rounded-full"
@@ -26,45 +26,35 @@ const BlogCard = ({
           <div className="flex justify-between w-full">
             <div className="flex items-center gap-1">
               <a
-                href={blogdetails.link}
+                href={contactdetails.link}
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium after:bg-black"
               >
-                {blogdetails.blogName}
+                {contactdetails.blogName}
               </a>
               <a
-                href={blogdetails.link}
+                href={contactdetails.link}
                 target="_blank"
                 rel="noreferrer"
                 className="text-gray-dark after:bg-gray"
               >
-                @{blogdetails.blogName}
+                @{contactdetails.blogName}
               </a>
             </div>
 
             <div className="flex items-center gap-1">
               <div className="text-gray-dark">{InfoIcon}</div>
-              <div className="text-gray-dark">{blogdetails.published}</div>
+              <div className="text-gray-dark">{contactdetails.published}</div>
             </div>
           </div>
 
-          <div className="leading-6 whitespace-pre-line">{blogdetails.title}</div>
-          <div key={cardindex} className="relative h-25 w-full ">
-              <img
-                style={{
-                  objectFit: "cover",
-                }}
-                alt=""
-                className="rounded-md"
-                src={blogdetails.image}
-              />
-        </div>
+          <div className="leading-6 whitespace-pre-line">{contactdetails.title}</div>
           
           {
-            blogdetails.numbers && (
+            contactdetails.numbers && (
                 <div className="flex space-x-2 divide-x divide-gray-light">
-            {blogdetails.numbers.map((detail, index) => (
+            {contactdetails.numbers.map((detail, index) => (
               <div
                 key={index}
                 className={classNames("flex items-center gap-1", index !== 0 ? "pl-2" : "")}
@@ -82,4 +72,4 @@ const BlogCard = ({
   );
 };
 
-export default BlogCard;
+export default ContactCard;

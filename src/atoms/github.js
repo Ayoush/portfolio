@@ -1,6 +1,11 @@
 import axios from "axios";
-import { selector, selectorFamily } from "recoil";
+import { atom, selector } from "recoil";
 import config from "../../config";
+
+export const githubAtom = atom({
+  key: 'github',
+  default: [],
+});
 
 export const githubData = selector({
   key: "githubData",
